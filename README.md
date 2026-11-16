@@ -6,8 +6,10 @@ FitTrack adalah aplikasi Android berbasis Python untuk mencatat aktivitas olahra
 
 - Fondasi Python: disiapkan dengan Python 3.14.
 - UI: Kivy.
-- Database MVP: SQLite bawaan Python.
-- Android packaging: belum disiapkan; Buildozer akan dikonfigurasi pada lingkungan Linux/WSL2 setelah aplikasi desktop stabil.
+- Database MVP: SQLite bawaan Python dengan migration versi 1.
+- Onboarding dan profil lokal: tersedia pada Phase 2.
+- Ekspor data: JSON ke direktori privat aplikasi.
+- Android packaging: belum diuji; Buildozer akan dikonfigurasi pada lingkungan Linux/WSL2 setelah aplikasi desktop stabil.
 
 ## Persyaratan
 
@@ -52,12 +54,15 @@ Atau tanpa aktivasi virtual environment:
 python -m pytest -q
 ~~~
 
-## Struktur awal
+## Struktur utama
 
 - app/main.py: entry point untuk menjalankan aplikasi.
-- app/app.py: kelas aplikasi Kivy dan root UI awal.
+- app/app.py: kelas aplikasi Kivy, navigasi, onboarding, dan profil.
+- app/database/: koneksi SQLite, migration, dan repository.
+- app/features/onboarding/: validasi input onboarding/profil.
+- app/services/data_manager.py: ekspor dan penghapusan data lokal.
 - tests/: pengujian otomatis.
-- docs/: dokumentasi desain dan keputusan teknis.
+- docs/: dokumentasi desain, database, privasi, dan pengujian.
 - FitTrack_PROJECT_MASTER.md: spesifikasi induk proyek.
 
 ## Catatan

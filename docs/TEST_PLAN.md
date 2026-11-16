@@ -12,6 +12,19 @@
 - [ ] Uji desktop preview pada beberapa lebar.
 - [ ] Uji APK pada HP Android.
 
+## Phase 2: Onboarding & Local Database
+
+- [x] Migration awal membuat tabel dan dapat dijalankan ulang tanpa menggandakan skema.
+- [x] Profil lokal dapat dibuat, dibaca, dan diperbarui.
+- [x] Pengukuran tinggi/berat dapat dilewati.
+- [x] Input tidak valid ditolak dengan pesan yang jelas.
+- [x] Profil disimpan dalam file SQLite dan dapat dibaca kembali.
+- [x] Ekspor JSON berisi data lokal.
+- [x] Penghapusan data menghapus data pengguna dan mempertahankan versi skema.
+- [x] Onboarding mengarahkan pengguna ke Home setelah profil disimpan.
+- [ ] Verifikasi manual alur onboarding, edit profil, ekspor, dan hapus data.
+- [ ] Uji penyimpanan pada APK/perangkat Android.
+
 ## Pengujian otomatis
 
 ```powershell
@@ -22,15 +35,17 @@
 
 Jalankan `python -m app.main`. Pada Windows/Linux/macOS, jendela preview dibuat portrait 390 x 844 px. Ubah ukuran jendela untuk memeriksa responsivitas.
 
-## Pengujian manual di desktop
+## Pengujian manual Phase 2
 
-1. Buka Home dan semua menu utama.
-2. Buka Profile lalu Settings.
-3. Tekan tombol tema beberapa kali.
-4. Pastikan halaman Settings tetap aktif dan tombol navigasi masih berfungsi.
-5. Ubah ukuran jendela menjadi sempit dan lebar.
-6. Pastikan dashboard dapat discroll dan teks tidak terpotong.
+1. Jalankan aplikasi dengan database baru.
+2. Pastikan layar Onboarding muncul.
+3. Isi nama tampilan saja, lalu simpan.
+4. Pastikan Home terbuka.
+5. Buka Profil, ubah nama, lalu simpan.
+6. Tutup dan jalankan ulang aplikasi; profil harus tetap tersedia.
+7. Coba isi pengukuran opsional dan ekspor JSON.
+8. Uji penghapusan: ketukan pertama hanya meminta konfirmasi, ketukan kedua menghapus data dan membuka Onboarding.
 
 ## Pengujian Android
 
-Setelah APK dibuat, uji pada HP nyata: ukuran layar, density, area status/navigation bar, keyboard, sentuhan, rotasi bila didukung, serta navigasi sistem Android.
+Setelah APK dibuat, uji pada HP nyata: ukuran layar, density, area status/navigation bar, keyboard, sentuhan, rotasi bila didukung, serta navigasi sistem Android. Ekspor JSON masih berada di direktori privat aplikasi pada tahap ini.

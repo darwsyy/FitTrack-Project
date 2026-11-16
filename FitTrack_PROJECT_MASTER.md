@@ -1,4 +1,4 @@
-﻿# FitTrack — Project Master Specification
+# FitTrack — Project Master Specification
 
 > **Dokumen induk proyek untuk manusia, ChatGPT, dan AI coding agent.**  
 > Versi: 1.1  
@@ -1082,14 +1082,14 @@ Status awal semua task: `[ ] Not started`.
 
 ## Phase 2 — Onboarding & Local Database
 
-- [ ] Buat onboarding.
-- [ ] Buat profil pengguna.
-- [ ] Buat pencatatan pengukuran opsional.
-- [ ] Buat local database.
-- [ ] Buat migration/schema awal.
-- [ ] Buat repository untuk profil.
-- [ ] Buat validasi input.
-- [ ] Buat fungsi export/delete data dasar.
+- [x] Buat onboarding.
+- [x] Buat profil pengguna.
+- [x] Buat pencatatan pengukuran opsional.
+- [x] Buat local database.
+- [x] Buat migration/schema awal.
+- [x] Buat repository untuk profil.
+- [x] Buat validasi input.
+- [x] Buat fungsi export/delete data dasar.
 
 **Definition of Done:**
 - Pengguna dapat menyelesaikan onboarding.
