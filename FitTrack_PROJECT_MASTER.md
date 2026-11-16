@@ -1,4 +1,4 @@
-# FitTrack — Project Master Specification
+﻿# FitTrack — Project Master Specification
 
 > **Dokumen induk proyek untuk manusia, ChatGPT, dan AI coding agent.**  
 > Versi: 1.1  
@@ -1053,10 +1053,10 @@ Status awal semua task: `[ ] Not started`.
 - [x] Buat repository Git.
 - [x] Buat struktur folder aplikasi Python.
 - [x] Buat README dan `.gitignore`.
-- [ ] Siapkan environment Python.
-- [ ] Siapkan Buildozer dan dependensi Android.
+- [x] Siapkan environment Python.
+- [x] Siapkan Buildozer dan dependensi Android.
 - [ ] Buat keputusan arsitektur awal (ADR).
-- [ ] Jalankan aplikasi Kivy kosong di desktop untuk pengembangan.
+- [x] Jalankan aplikasi Kivy kosong di desktop untuk pengembangan.
 - [ ] Build dan jalankan APK percobaan di Android.
 
 **Definition of Done:**
@@ -1068,12 +1068,12 @@ Status awal semua task: `[ ] Not started`.
 ## Phase 1 — UI Foundation & Navigation
 
 - [ ] Tentukan moodboard dan design tokens.
-- [ ] Buat theme light/dark.
-- [ ] Buat app shell.
-- [ ] Buat navigasi Home/Cardio/Workout/Food/Sleep.
-- [ ] Buat reusable card, button, input, dan chart container.
-- [ ] Buat halaman Profile/Settings.
-- [ ] Buat empty states dan loading states.
+- [x] Buat theme light/dark.
+- [x] Buat app shell.
+- [x] Buat navigasi Home/Cardio/Workout/Food/Sleep.
+- [x] Buat reusable card, button, input, dan chart container.
+- [x] Buat halaman Profile/Settings.
+- [x] Buat empty states dan loading states.
 
 **Definition of Done:**
 - Semua halaman utama dapat dibuka.
