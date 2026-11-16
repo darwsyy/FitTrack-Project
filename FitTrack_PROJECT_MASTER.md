@@ -1050,9 +1050,9 @@ Status awal semua task: `[ ] Not started`.
 - [x] Tetapkan nama kerja/final: FitTrack.
 - [x] Tetapkan Android sebagai platform awal.
 - [x] Tetapkan Python + Kivy/KivyMD sebagai stack aplikasi.
-- [ ] Buat repository Git.
-- [ ] Buat struktur folder aplikasi Python.
-- [ ] Buat README dan `.gitignore`.
+- [x] Buat repository Git.
+- [x] Buat struktur folder aplikasi Python.
+- [x] Buat README dan `.gitignore`.
 - [ ] Siapkan environment Python.
 - [ ] Siapkan Buildozer dan dependensi Android.
 - [ ] Buat keputusan arsitektur awal (ADR).
