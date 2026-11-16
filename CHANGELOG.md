@@ -20,3 +20,15 @@
 - Preserved the active page and navigation state when switching light/dark themes.
 - Added a portrait desktop preview configuration (390 x 844 px) to make mobile-first layout checks easier.
 - Updated UI guidance to distinguish desktop preview from actual Android device validation.
+
+
+## Phase 2 — Onboarding & Local Database
+
+### Added
+- Added versioned SQLite schema migration (v1) and foreign-key enforcement.
+- Added local profile repository and input validation.
+- Added first-run onboarding and editable profile screen.
+- Added optional height/weight measurement history.
+- Added JSON export and two-step local data deletion.
+- Added database, validation, persistence, export, deletion, and UI tests.
+- Documented database and privacy behavior.
