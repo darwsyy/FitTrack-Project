@@ -1116,6 +1116,8 @@ Status awal semua task: `[ ] Not started`.
 - Data tersimpan lokal.
 - Riwayat dapat dibuka kembali.
 
+**Implementation note (2026-11-16):** Katalog, template bawaan, custom routine, sesi, pencatatan set, riwayat, dan pemulihan sesi aktif telah diimplementasikan serta memiliki pengujian otomatis. Jangan tandai Phase 3 selesai sebelum pemilik proyek melakukan verifikasi manual pada UI.
+
 ## Phase 4 — Cardio Module (Manual First)
 
 - [ ] Buat pencatatan lari manual.

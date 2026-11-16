@@ -99,3 +99,51 @@ def test_settings_button_opens_theme_settings(tmp_path):
     app.settings_button.dispatch("on_release")
     assert app.manager.current == "Settings"
     assert app.theme_label is not None
+
+
+
+def test_workout_screen_builds_catalogue_and_template_controls(tmp_path):
+    app = _build_app(tmp_path)
+    app.go_to("Workout")
+    assert app.manager.current == "Workout"
+    assert "Full Body" in app.workout_template_map
+    assert "Chest Press" in app.workout_exercise_map
+
+
+def test_workout_ui_can_record_and_finish_session(tmp_path):
+    app = _build_app(tmp_path)
+    app.profile_repository.save_profile({"display_name": "Workout UI"})
+    app.go_to("Workout")
+    app._start_workout(False)
+    assert app.active_workout_id is not None
+    app.workout_reps_input.text = "8"
+    app._add_workout_set()
+    assert "Set berhasil" in app.workout_message.text
+    app._finish_workout()
+    assert app.active_workout_id is None
+    assert len(app.workout_history_map) == 1
+
+
+def test_workout_ui_can_create_custom_routine(tmp_path):
+    app = _build_app(tmp_path)
+    app.profile_repository.save_profile({"display_name": "Routine UI"})
+    app.go_to("Workout")
+    app.custom_routine_name.text = "Routine UI Test"
+    app._add_custom_routine_exercise()
+    app._save_custom_routine()
+    assert "Routine UI Test" in app.workout_template_map
+
+
+
+def test_workout_ui_restores_active_session_after_rebuild(tmp_path):
+    app = _build_app(tmp_path)
+    app.profile_repository.save_profile({"display_name": "Resume UI"})
+    app.go_to("Workout")
+    app.workout_mode_spinner.text = "Home workout"
+    app._start_workout(False)
+    session_id = app.active_workout_id
+
+    reopened_app = _build_app(tmp_path)
+    reopened_app.go_to("Workout")
+    assert reopened_app.active_workout_id == session_id
+    assert reopened_app.workout_mode_spinner.text == "Home workout"

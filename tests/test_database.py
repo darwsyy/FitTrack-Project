@@ -25,9 +25,11 @@ def test_database_applies_versioned_schema(database):
                 "SELECT name FROM sqlite_master WHERE type='table'"
             )
         }
-    assert version == 1
+    assert version == 3
     assert {"users", "user_profiles", "body_measurements",
-            "user_settings"}.issubset(tables)
+            "user_settings", "exercises", "workout_templates",
+            "workout_sessions", "workout_session_exercises",
+            "workout_sets"}.issubset(tables)
 
 
 def test_database_migration_is_idempotent(database):
@@ -37,7 +39,52 @@ def test_database_migration_is_idempotent(database):
         count = connection.execute(
             "SELECT COUNT(*) FROM schema_migrations"
         ).fetchone()[0]
-    assert count == 1
+    assert count == 3
+
+
+def test_existing_version_two_database_gets_template_owner_column(tmp_path):
+    db_path = tmp_path / "legacy-v2.sqlite3"
+    connection = sqlite3.connect(db_path)
+    connection.execute(
+        "CREATE TABLE schema_migrations (version INTEGER PRIMARY KEY, applied_at TEXT NOT NULL)"
+    )
+    connection.execute(
+        "CREATE TABLE users (id TEXT PRIMARY KEY, display_name TEXT NOT NULL, "
+        "created_at TEXT NOT NULL, updated_at TEXT NOT NULL)"
+    )
+    connection.execute(
+        "CREATE TABLE workout_templates (id TEXT PRIMARY KEY, name TEXT NOT NULL, "
+        "description TEXT NOT NULL DEFAULT '', training_mode TEXT NOT NULL, "
+        "is_custom INTEGER NOT NULL DEFAULT 0, created_at TEXT NOT NULL)"
+    )
+    connection.execute(
+        "INSERT INTO workout_templates "
+        "(id, name, description, training_mode, is_custom, created_at) "
+        "VALUES ('template-1', 'Full Body', '', 'gym', 0, '2026-01-01')"
+    )
+    connection.executemany(
+        "INSERT INTO schema_migrations(version, applied_at) VALUES (?, ?)",
+        [(1, "old"), (2, "old")],
+    )
+    connection.commit()
+    connection.close()
+
+    Database(db_path)
+
+    with sqlite3.connect(db_path) as migrated:
+        columns = {row[1] for row in migrated.execute(
+            "PRAGMA table_info(workout_templates)"
+        )}
+        template = migrated.execute(
+            "SELECT id, name, user_id FROM workout_templates"
+        ).fetchone()
+        version = migrated.execute(
+            "SELECT MAX(version) FROM schema_migrations"
+        ).fetchone()[0]
+
+    assert "user_id" in columns
+    assert template == ("template-1", "Full Body", None)
+    assert version == 3
 
 
 def test_profile_can_be_created_and_loaded(database):
@@ -116,7 +163,7 @@ def test_json_export_contains_profile_data(database, tmp_path):
     )
     payload = json.loads(destination.read_text(encoding="utf-8"))
     assert payload["app"] == "FitTrack"
-    assert payload["schema_version"] == 1
+    assert payload["schema_version"] == 3
     assert payload["tables"]["users"][0]["display_name"] == "Export Test"
 
 
@@ -129,7 +176,7 @@ def test_delete_all_data_preserves_schema(database):
         version = connection.execute(
             "SELECT MAX(version) FROM schema_migrations"
         ).fetchone()[0]
-    assert version == 1
+    assert version == 3
 
 
 def test_database_rejects_orphan_measurements(database):

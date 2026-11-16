@@ -1,4 +1,4 @@
-# FitTrack — Test Plan
+# FitTrack - Test Plan
 
 ## Phase 1: UI Foundation & Navigation
 
@@ -22,18 +22,52 @@
 - [x] Ekspor JSON berisi data lokal.
 - [x] Penghapusan data menghapus data pengguna dan mempertahankan versi skema.
 - [x] Onboarding mengarahkan pengguna ke Home setelah profil disimpan.
-- [ ] Verifikasi manual alur onboarding, edit profil, ekspor, dan hapus data.
+- [x] Verifikasi manual alur onboarding, edit profil, ekspor, dan hapus data.
 - [ ] Uji penyimpanan pada APK/perangkat Android.
 
-## Pengujian otomatis
+## Phase 3: Workout Module
 
-```powershell
-.\.venv\Scripts\python.exe -m pytest -q
-```
+### Automated tests
+
+- [x] Migration v2 membuat tabel workout dan dapat dijalankan berulang.
+- [x] Katalog exercise dan template bawaan di-seed tanpa duplikasi.
+- [x] Template gym/home menampilkan pilihan exercise yang sesuai.
+- [x] Custom routine membutuhkan nama dan minimal satu exercise.
+- [x] Sesi dari template menyimpan exercise secara berurutan.
+- [x] Sesi kosong dapat ditambah exercise.
+- [x] Set repetisi/beban dan set durasi dapat disimpan.
+- [x] Input set tidak valid ditolak.
+- [x] Sesi tanpa set selesai tidak dapat diakhiri.
+- [x] Sesi selesai tidak dapat diubah lagi.
+- [x] Hanya satu sesi aktif yang diizinkan dan sesi aktif dapat dipulihkan.
+- [x] Exercise gym-only ditolak pada sesi home dan sebaliknya.
+- [x] Custom routine terikat ke profil pemilik dan ikut terhapus bersama profil.
+- [x] Riwayat dan detail sesi dapat dibaca.
+- [x] Penghapusan profil menghapus sesi workout terkait.
+- [x] UI dapat memulai sesi, mencatat set, menyelesaikan sesi, dan membuat custom routine.
+
+### Manual verification required
+
+- [ ] Periksa layout Workout pada desktop portrait.
+- [ ] Coba mode Gym dan Home workout.
+- [ ] Mulai sesi dari template dan sesi kosong.
+- [ ] Tambah exercise dan catat beberapa set.
+- [ ] Coba gerakan berbasis durasi seperti plank.
+- [ ] Coba validasi saat input kosong/tidak valid.
+- [ ] Akhiri sesi dan buka detail riwayat.
+- [ ] Buat custom routine lalu mulai sesi dari template tersebut.
+- [ ] Tutup dan buka aplikasi; pastikan riwayat tetap tersimpan.
+- [ ] Uji APK pada perangkat Android setelah packaging tersedia.
+
+## Menjalankan pengujian otomatis
+
+\`\`\`powershell
+.\\.venv\\Scripts\\python.exe -m pytest -q
+\`\`\`
 
 ## Desktop preview
 
-Jalankan `python -m app.main`. Pada Windows/Linux/macOS, jendela preview dibuat portrait 390 x 844 px. Ubah ukuran jendela untuk memeriksa responsivitas.
+Jalankan \`python -m app.main\`. Pada Windows/Linux/macOS, jendela preview dibuat portrait 390 x 844 px. Ubah ukuran jendela untuk memeriksa responsivitas.
 
 ## Pengujian manual Phase 2
 
