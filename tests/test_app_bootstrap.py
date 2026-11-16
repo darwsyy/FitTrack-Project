@@ -92,3 +92,10 @@ def test_delete_data_requires_two_confirmations(tmp_path):
     assert app.request_delete_data() is True
     assert app.profile_repository.get_profile() is None
     assert app.manager.current == "Onboarding"
+
+
+def test_settings_button_opens_theme_settings(tmp_path):
+    app = _build_app(tmp_path)
+    app.settings_button.dispatch("on_release")
+    assert app.manager.current == "Settings"
+    assert app.theme_label is not None

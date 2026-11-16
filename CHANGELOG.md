@@ -32,3 +32,8 @@
 - Added JSON export and two-step local data deletion.
 - Added database, validation, persistence, export, deletion, and UI tests.
 - Documented database and privacy behavior.
+
+
+### UI access fix
+- Added a visible Setelan button to the top bar so users can open Settings and reach the light/dark theme control.
+- Added a regression test for opening Settings from the top bar.

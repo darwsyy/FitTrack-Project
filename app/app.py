@@ -117,7 +117,11 @@ class FitTrackApp(App):
         title.bind(size=lambda obj, size: setattr(obj, "text_size", size))
         profile = FTButton("Profil", self.palette)
         profile.bind(on_release=lambda *_: self.go_to("Profile"))
+        settings = FTButton("Setelan", self.palette)
+        settings.bind(on_release=lambda *_: self.go_to("Settings"))
+        self.settings_button = settings
         bar.add_widget(title)
+        bar.add_widget(settings)
         bar.add_widget(profile)
         return bar
 
