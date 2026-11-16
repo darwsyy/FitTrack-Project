@@ -13,3 +13,10 @@
 ### Tests
 - Added app shell, navigation, theme toggle, and reusable component tests.
 - Latest automated result: 4 tests passed.
+
+
+### Fixed
+- Fixed theme switching to update existing widgets in place instead of rebuilding the root application.
+- Preserved the active page and navigation state when switching light/dark themes.
+- Added a portrait desktop preview configuration (390 x 844 px) to make mobile-first layout checks easier.
+- Updated UI guidance to distinguish desktop preview from actual Android device validation.
